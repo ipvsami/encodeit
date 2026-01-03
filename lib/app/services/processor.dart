@@ -38,11 +38,15 @@ img.Image _processImage(img.Image image, String key) {
   return image;
 }
 
-Future<File> _saveImage(img.Image image, String fileName) async {
+Future<File> _saveImage(img.Image image, [String? fileName]) async {
   final bytes = img.encodePng(image);
   final dir = await getTemporaryDirectory();
-  final file = File('${dir.path}/$fileName.png');
 
+  String randomName = fileName ?? "image";
+  randomName += "_${DateTime.now().millisecondsSinceEpoch}";
+  randomName += "_${Random().nextInt(100000)}";
+
+  final file = File('${dir.path}/$randomName.png');
   await file.writeAsBytes(bytes, flush: true);
 
   return file;
