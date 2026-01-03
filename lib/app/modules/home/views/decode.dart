@@ -152,7 +152,7 @@ class Decode extends GetView<HomeController> {
                       borderRadius: 12.r,
                       duration: Duration(seconds: 2),
                       messageText: Text(
-                        'تصویر با موفقیت انکد شد.',
+                        'تصویر با موفقیت دیکد شد.',
                         textDirection: .rtl,
                       ),
                     ),
