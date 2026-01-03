@@ -136,53 +136,24 @@ class Decode extends GetView<HomeController> {
               child: ElevatedButton(
                 onPressed: () async {
                   if (controller.selectedImageToDecode.value == null) return;
-
+                  controller.isLoadingDecode.value = true;
                   await controller.decodeImage(
                     controller.selectedImageToDecode.value!,
                     controller.keyController.text,
                   );
-                  Get.dialog(
-                    AlertDialog(
-                      title: Center(
-                        child: Text(
-                          'عملیات موفق آمیز بود!',
-                          style: TextTheme.of(context).titleLarge,
-                          textDirection: .rtl,
-                        ),
+                  Get.showSnackbar(
+                    GetSnackBar(
+                      backgroundColor: AppColors.secondaryColor,
+                      titleText: Text(
+                        'عملیات موفقیت آمیز بود!',
+                        textDirection: .rtl,
+                        style: TextTheme.of(context).titleLarge!.copyWith(),
                       ),
-                      content: ElevatedButton(
-                        onPressed: () {
-                          controller.isLoadingDecode.value = true;
-                          controller.saveDecodedImage();
-                          Get.back();
-
-                          Get.showSnackbar(
-                            GetSnackBar(
-                              messageText: Text(
-                                'تصویر دیکد شده در گالری ذخیره شد.',
-                                textDirection: .rtl,
-                                style: TextTheme.of(context).titleMedium,
-                              ),
-                              titleText: Text(
-                                'ذخیره شد.',
-                                textDirection: .rtl,
-                                style: TextTheme.of(context).titleLarge,
-                              ),
-                              duration: Duration(seconds: 2),
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: AppColors.secondaryColor,
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0.r),
-                          child: Text(
-                            'ذخیره در گالری',
-                            style: TextTheme.of(context).titleLarge!.copyWith(
-                              color: AppColors.secondaryColor,
-                            ),
-                          ),
-                        ),
+                      borderRadius: 12.r,
+                      duration: Duration(seconds: 2),
+                      messageText: Text(
+                        'تصویر با موفقیت انکد شد.',
+                        textDirection: .rtl,
                       ),
                     ),
                   );

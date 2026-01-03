@@ -140,6 +140,7 @@ class Encode extends GetView<HomeController> {
               height: 70.h,
               child: ElevatedButton(
                 onPressed: () {
+                  controller.isLoadingEncode.value = true;
                   controller.encodeImage(
                     controller.selectedImageToEncode.value!,
                     controller.keyController.text,
@@ -184,7 +185,6 @@ class Encode extends GetView<HomeController> {
                           .withAlpha(120),
                     ),
                     onPressed: () {
-                      controller.isLoadingEncode.value = true;
                       controller.saveEncodedImage();
                       Get.back();
 
