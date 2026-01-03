@@ -181,7 +181,6 @@ class Decode extends GetView<HomeController> {
                           .withAlpha(120),
                     ),
                     onPressed: () {
-                      controller.isLoadingDecode.value = true;
                       controller.saveDecodedImage();
                       Get.back();
 
